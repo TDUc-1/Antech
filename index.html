@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANTECH – Thiết Bị Tự Động Hóa</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#e02020;--red-dark:#b51a1a;--red-light:#ff3b3b;
+  --dark:#0d0d14;--dark2:#151520;--dark3:#1e1e2e;
+  --gray:#f4f4f7;--gray2:#e8e8f0;--gray3:#c5c5d2;sđcds v c
+  --text:#1a1a2e;--muted:#6b6b80;--white:#fff;
+  --radius:12px;--radius-sm:8px;--radius-lg:20px;
+}
+body{font-family:'Be Vietnam Pro',sans-serif;color:var(--text);background:#f6f6fa;font-size:14px;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+/* TOPBAR */
+.topbar{background:var(--dark);color:rgba(255,255,255,0.7);font-size:12px;padding:8px 0}
+.topbar-inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.topbar-left{display:flex;gap:24px;align-items:center}
+.topbar-item{display:flex;align-items:center;gap:6px}
+.topbar-item svg{width:13px;height:13px;fill:var(--red-light);flex-shrink:0}
+.topbar-right{display:flex;gap:16px;align-items:center}
+.topbar-social{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;transition:background .2s}
+.topbar-social:hover{background:var(--red)}
+.topbar-social svg{width:12px;height:12px;fill:rgba(255,255,255,0.7)}
+
+/* HEADER */
+.header{background:var(--white);position:sticky;top:0;z-index:200;border-bottom:1px solid var(--gray2)}
+.header-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:70px;display:flex;align-items:center;gap:32px}
+.logo{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.logo-icon{width:42px;height:42px;background:var(--red);border-radius:10px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:22px;height:22px;fill:#fff}
+.logo-text{line-height:1.15}
+.logo-name{font-size:18px;font-weight:900;color:var(--dark);letter-spacing:-0.5px}
+.logo-sub{font-size:10px;color:var(--muted);font-weight:500;letter-spacing:1.5px;text-transform:uppercase}
+
+/* SEARCH */
+.header-search{flex:1;max-width:480px}
+.search-wrap{position:relative}
+.search-wrap input{width:100%;height:42px;border:1.5px solid var(--gray2);border-radius:100px;padding:0 46px 0 18px;font-size:13px;font-family:inherit;color:var(--text);background:var(--gray);outline:none;transition:border-color .2s,background .2s}
+.search-wrap input:focus{border-color:var(--red);background:#fff}
+.search-wrap input::placeholder{color:var(--muted)}
+.search-btn{position:absolute;right:5px;top:50%;transform:translateY(-50%);width:32px;height:32px;background:var(--red);border:none;border-radius:100px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s}
+.search-btn:hover{background:var(--red-dark)}
+.search-btn svg{width:14px;height:14px;fill:#fff}
+
+.header-right{display:flex;align-items:center;gap:20px;margin-left:auto}
+.header-hotline{display:flex;align-items:center;gap:10px}
+.hotline-ring{width:38px;height:38px;background:#fff0f0;border-radius:50%;display:flex;align-items:center;justify-content:center;animation:ring 2s infinite}
+@keyframes ring{0%,100%{transform:rotate(0)}10%{transform:rotate(-10deg)}20%{transform:rotate(10deg)}30%{transform:rotate(-8deg)}40%{transform:rotate(8deg)}50%{transform:rotate(0)}}
+.hotline-ring svg{width:18px;height:18px;fill:var(--red)}
+.hotline-info{line-height:1.3}
+.hotline-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.hotline-num{font-size:16px;font-weight:800;color:var(--red);letter-spacing:-0.5px}
+.cart-btn{position:relative;width:38px;height:38px;background:var(--gray);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s}
+.cart-btn:hover{background:var(--gray2)}
+.cart-btn svg{width:18px;height:18px;fill:var(--muted)}
+.cart-dot{position:absolute;top:4px;right:4px;width:8px;height:8px;background:var(--red);border-radius:50%;border:1.5px solid #fff}
+
+/* NAV */
+.nav{background:var(--dark2)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:12px;position:relative}
+.nav-item{position:relative}
+.nav-item>a{display:flex;align-items:center;gap:5px;padding:0 16px;height:46px;color:rgba(255,255,255,0.82);font-size:13px;font-weight:600;letter-spacing:0.2px;transition:color .2s,background .2s;white-space:nowrap}
+.nav-item>a:hover,.nav-item>a.active{color:#fff;background:rgba(255,255,255,0.06)}
+.nav-item.highlight>a{color:var(--red-light)}
+.nav-caret{font-size:9px;opacity:0.6;transition:transform .2s}
+.nav-item:hover .nav-caret{transform:rotate(180deg)}
+.dropdown{display:none;position:absolute;top:100%;left:0;background:#fff;border-radius:0 0 var(--radius) var(--radius);min-width:210px;z-index:300;box-shadow:0 12px 40px rgba(0,0,0,0.15);padding:6px 0;border:1px solid var(--gray2);border-top:none}
+.nav-item:hover .dropdown{display:block}
+.dropdown a{display:flex;align-items:center;gap:8px;padding:9px 18px;font-size:13px;color:var(--text);transition:background .15s,color .15s}
+.dropdown a:hover{background:#fff5f5;color:var(--red)}
+.dropdown a::before{content:'';width:4px;height:4px;background:var(--gray3);border-radius:50%;flex-shrink:0;transition:background .15s}
+.dropdown a:hover::before{background:var(--red)}
+.dd-head{padding:10px 18px 6px;font-size:10px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;border-bottom:1px solid var(--gray2);margin-bottom:4px}
+
+/* HERO */
+.hero{max-width:1280px;margin:24px auto;padding:0 24px}
+.hero-wrap{position:relative;border-radius:var(--radius-lg);overflow:hidden;height:440px;background:var(--dark)}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity .7s ease;display:flex;align-items:center}
+.hero-slide.active{opacity:1}
+.slide-bg{position:absolute;inset:0;overflow:hidden}
+.slide-bg-shape{position:absolute;border-radius:50%}
+.s1 .slide-bg{background:linear-gradient(135deg,#0d0d14 0%,#1a0a0a 60%,#2a0a0a 100%)}
+.s1 .sh1{width:500px;height:500px;background:radial-gradient(circle,rgba(224,32,32,0.2) 0%,transparent 70%);top:-100px;right:100px}
+.s1 .sh2{width:300px;height:300px;background:radial-gradient(circle,rgba(224,32,32,0.1) 0%,transparent 70%);bottom:-50px;right:200px}
+.s2 .slide-bg{background:linear-gradient(135deg,#0a0a1a 0%,#0d1a2e 100%)}
+.s2 .sh1{width:600px;height:600px;background:radial-gradient(circle,rgba(30,80,180,0.2) 0%,transparent 70%);top:-150px;right:50px}
+.s3 .slide-bg{background:linear-gradient(135deg,#0a1a0a 0%,#0d2a14 100%)}
+.s3 .sh1{width:500px;height:500px;background:radial-gradient(circle,rgba(20,160,80,0.18) 0%,transparent 70%);top:-100px;right:100px}
+.hero-content{position:relative;z-index:2;padding:0 64px;max-width:600px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(224,32,32,0.15);border:1px solid rgba(224,32,32,0.3);border-radius:100px;padding:5px 14px 5px 8px;margin-bottom:22px}
+.hero-eyebrow-dot{width:6px;height:6px;background:var(--red-light);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}
+.hero-eyebrow span{font-size:11px;font-weight:700;color:var(--red-light);letter-spacing:1px;text-transform:uppercase}
+.hero-title{font-size:44px;font-weight:900;color:#fff;line-height:1.1;letter-spacing:-1.5px;margin-bottom:16px}
+.hero-title em{font-style:normal;color:var(--red-light)}
+.hero-desc{font-size:15px;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:32px;max-width:430px}
+.hero-actions{display:flex;gap:14px;align-items:center}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;padding:13px 26px;border-radius:100px;font-size:14px;font-weight:700;letter-spacing:0.2px;transition:background .2s,transform .15s;border:none;cursor:pointer}
+.btn-primary:hover{background:var(--red-dark);transform:translateY(-1px)}
+.btn-primary svg{width:16px;height:16px;fill:#fff}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:rgba(255,255,255,0.8);padding:12px 22px;border-radius:100px;font-size:14px;font-weight:600;border:1.5px solid rgba(255,255,255,0.2);transition:border-color .2s,color .2s}
+.btn-outline:hover{border-color:rgba(255,255,255,0.5);color:#fff}
+.hero-stats{position:absolute;right:48px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:14px;z-index:2}
+.stat-chip{background:rgba(255,255,255,0.07);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:14px 20px;min-width:140px}
+.stat-num{font-size:28px;font-weight:900;color:#fff;letter-spacing:-1px;line-height:1}
+.stat-label{font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;font-weight:500}
+.hero-dots{position:absolute;bottom:22px;left:64px;display:flex;gap:8px;z-index:10}
+.hdot{height:4px;border-radius:4px;background:rgba(255,255,255,0.3);cursor:pointer;transition:width .4s,background .4s;width:20px}
+.hdot.active{width:36px;background:var(--red-light)}
+.hero-nav{position:absolute;bottom:16px;right:48px;display:flex;gap:8px;z-index:10}
+.hnav{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.hnav:hover{background:var(--red)}
+
+/* BODY LAYOUT */
+.body-wrap{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;gap:24px}
+
+/* SIDEBAR */
+.sidebar{width:220px;flex-shrink:0}
+.sidebar-card{background:#fff;border-radius:var(--radius);border:1px solid var(--gray2);overflow:hidden}
+.sidebar-header{background:var(--red);color:#fff;padding:12px 16px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;display:flex;align-items:center;gap:8px}
+.sidebar-header svg{width:14px;height:14px;fill:#fff;flex-shrink:0}
+.sidebar-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--gray2);font-size:13px;font-weight:600;color:var(--text);cursor:pointer;transition:background .15s,color .15s}
+.sidebar-item:hover{background:#fff5f5;color:var(--red)}
+.sidebar-item:last-child{border-bottom:none}
+.brand-tag{width:32px;height:24px;border-radius:5px;background:var(--gray);display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800;color:var(--muted);flex-shrink:0;letter-spacing:0.5px}
+.sidebar-arrow{margin-left:auto;opacity:0.35;font-size:11px}
+.sidebar-item:hover .sidebar-arrow{opacity:1;color:var(--red)}
+
+/* MAIN */
+.main-content{flex:1;min-width:0}
+
+/* SECTION HEADING */
+.sec-head{display:flex;align-items:center;justify-content:space-between;margin:28px 0 16px}
+.sec-title{font-size:18px;font-weight:800;color:var(--dark);letter-spacing:-0.5px;display:flex;align-items:center;gap:10px}
+.sec-title::before{content:'';display:block;width:4px;height:22px;background:var(--red);border-radius:4px}
+.sec-link{font-size:13px;font-weight:600;color:var(--red);display:flex;align-items:center;gap:4px;transition:gap .2s}
+.sec-link:hover{gap:8px}
+.sec-link svg{width:14px;height:14px;fill:var(--red)}
+
+/* PROMO BANNER */
+.promo-banner{background:linear-gradient(135deg,var(--red-dark) 0%,var(--red) 50%,#ff5555 100%);border-radius:var(--radius);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;position:relative;overflow:hidden}
+.promo-banner::before{content:'';position:absolute;right:-40px;top:-40px;width:180px;height:180px;background:rgba(255,255,255,0.05);border-radius:50%}
+.promo-banner::after{content:'';position:absolute;right:40px;bottom:-60px;width:140px;height:140px;background:rgba(255,255,255,0.04);border-radius:50%}
+.promo-left{position:relative;z-index:1}
+.promo-eyebrow{font-size:10px;font-weight:700;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.promo-title{font-size:22px;font-weight:900;color:#fff;letter-spacing:-0.5px}
+.promo-title span{color:#ffcc00}
+.promo-btn{position:relative;z-index:1;background:#fff;color:var(--red);padding:10px 20px;border-radius:100px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px;transition:transform .15s;flex-shrink:0}
+.promo-btn:hover{transform:scale(1.03)}
+.promo-btn svg{width:14px;height:14px;fill:var(--red)}
+
+/* PRODUCT GRID */
+.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.product-card{background:#fff;border-radius:var(--radius);border:1.5px solid transparent;overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s;position:relative}
+.product-card:hover{border-color:var(--red);transform:translateY(-3px);box-shadow:0 8px 30px rgba(224,32,32,0.12)}
+.product-badge{position:absolute;top:10px;left:10px;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:100px;z-index:1;letter-spacing:0.3px}
+.product-wishlist{position:absolute;top:10px;right:10px;width:28px;height:28px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.1);cursor:pointer;transition:background .2s;z-index:1}
+.product-wishlist:hover{background:#fff5f5}
+.product-wishlist svg{width:14px;height:14px;fill:#ddd;transition:fill .2s}
+.product-wishlist:hover svg{fill:var(--red)}
+.product-img{width:100%;aspect-ratio:1;background:var(--gray);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.product-img svg{width:48px;height:48px;fill:var(--gray3)}
+.product-body{padding:12px}
+.product-brand{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.product-name{font-size:12px;font-weight:600;color:var(--text);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:8px}
+.product-footer{display:flex;align-items:center;justify-content:space-between}
+.product-price{font-size:13px;font-weight:800;color:var(--red)}
+.product-price.contact{color:var(--muted);font-weight:600;font-size:12px}
+.add-cart{width:28px;height:28px;background:var(--red);border:none;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,transform .15s}
+.add-cart:hover{background:var(--red-dark);transform:scale(1.08)}
+.add-cart svg{width:13px;height:13px;fill:#fff}
+
+/* TABS */
+.tab-wrap{margin:28px 0 0}
+.tab-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:0;background:#fff;border-radius:var(--radius) var(--radius) 0 0;border:1px solid var(--gray2);border-bottom:none;padding:14px 16px 0}
+.tab-nav{display:flex;gap:0;overflow-x:auto}
+.tab-btn{padding:10px 16px;font-size:12px;font-weight:700;color:var(--muted);background:transparent;border:none;border-bottom:2.5px solid transparent;cursor:pointer;transition:color .2s,border-color .2s;white-space:nowrap;font-family:inherit;letter-spacing:0.3px;text-transform:uppercase}
+.tab-btn.active,.tab-btn:hover{color:var(--red);border-bottom-color:var(--red)}
+.tab-content{background:#fff;border-radius:0 0 var(--radius) var(--radius);border:1px solid var(--gray2);border-top:none;padding:16px}
+
+/* TRUST SECTION */
+.trust-section{background:#fff;border-radius:var(--radius);border:1px solid var(--gray2);padding:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin:28px 0}
+.trust-item{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px}
+.trust-icon{width:56px;height:56px;background:linear-gradient(135deg,#fff0f0,#ffd6d6);border-radius:16px;display:flex;align-items:center;justify-content:center}
+.trust-icon svg{width:26px;height:26px;fill:var(--red)}
+.trust-title{font-size:14px;font-weight:800;color:var(--dark)}
+.trust-sub{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* BRANDS SECTION */
+.brands-section{margin:28px 0}
+.brands-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.brand-card{background:#fff;border:1.5px solid var(--gray2);border-radius:var(--radius-sm);padding:16px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:border-color .2s,box-shadow .2s,transform .2s;min-height:72px}
+.brand-card:hover{border-color:var(--red);box-shadow:0 4px 16px rgba(224,32,32,0.1);transform:translateY(-2px)}
+.brand-name{font-size:12px;font-weight:800;color:var(--text);text-align:center;letter-spacing:0.5px}
+.brand-sub{font-size:10px;color:var(--muted)}
+
+/* NEWS */
+.news-section{margin:28px 0 32px}
+.news-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.news-card{background:#fff;border-radius:var(--radius);border:1px solid var(--gray2);overflow:hidden;display:flex;gap:0;cursor:pointer;transition:box-shadow .2s,transform .2s}
+.news-card:hover{box-shadow:0 6px 24px rgba(0,0,0,0.08);transform:translateY(-2px)}
+.news-side{background:var(--red);width:64px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding:10px 6px}
+.news-day{font-size:26px;font-weight:900;line-height:1}
+.news-mon{font-size:10px;font-weight:600;opacity:0.8;letter-spacing:0.5px}
+.news-img-thumb{width:100px;flex-shrink:0;background:var(--gray);overflow:hidden}
+.news-img-thumb img{width:100%;height:100%;object-fit:cover}
+.news-body{padding:14px 16px;flex:1;display:flex;flex-direction:column;gap:6px;justify-content:center}
+.news-cat{font-size:10px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:1px}
+.news-title{font-size:13px;font-weight:700;color:var(--dark);line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.news-title:hover{color:var(--red)}
+.news-date{font-size:11px;color:var(--muted)}
+
+/* FOOTER */
+.footer{background:var(--dark);color:rgba(255,255,255,0.7);margin-top:48px}
+.footer-top{max-width:1280px;margin:0 auto;padding:48px 24px 32px;display:grid;grid-template-columns:2.2fr 1fr 1fr 1.2fr;gap:40px}
+.footer-brand-name{font-size:20px;font-weight:900;color:#fff;letter-spacing:-0.5px;margin-bottom:12px}
+.footer-brand-name span{color:var(--red-light)}
+.footer-desc{font-size:13px;line-height:1.8;margin-bottom:20px;max-width:300px}
+.footer-contacts{display:flex;flex-direction:column;gap:10px}
+.fc{display:flex;align-items:center;gap:10px;font-size:13px}
+.fc-icon{width:30px;height:30px;background:rgba(224,32,32,0.15);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fc-icon svg{width:14px;height:14px;fill:var(--red-light)}
+.fc strong{color:#fff;font-weight:700}
+.footer-heading{font-size:13px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-links a{font-size:13px;color:rgba(255,255,255,0.55);display:flex;align-items:center;gap:7px;transition:color .2s}
+.footer-links a:hover{color:#fff}
+.footer-links a::before{content:'';width:5px;height:1px;background:var(--red);flex-shrink:0;transition:width .2s}
+.footer-links a:hover::before{width:10px}
+.footer-newsletter{margin-top:16px}
+.newsletter-label{font-size:12px;color:rgba(255,255,255,0.55);margin-bottom:10px}
+.newsletter-wrap{display:flex;gap:0;border:1px solid rgba(255,255,255,0.12);border-radius:100px;overflow:hidden}
+.newsletter-wrap input{flex:1;background:transparent;border:none;padding:10px 16px;font-size:12px;color:#fff;font-family:inherit;outline:none}
+.newsletter-wrap input::placeholder{color:rgba(255,255,255,0.3)}
+.newsletter-btn{background:var(--red);border:none;padding:0 16px;color:#fff;font-size:12px;font-weight:700;cursor:pointer;transition:background .2s}
+.newsletter-btn:hover{background:var(--red-dark)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.07)}
+.footer-bottom-inner{max-width:1280px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.35)}
+.footer-badges{display:flex;gap:8px}
+.fbadge{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:4px 10px;font-size:10px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:0.5px}
+
+/* FLOATING */
+.float-actions{position:fixed;right:20px;bottom:80px;display:flex;flex-direction:column;gap:10px;z-index:999}
+.float-btn{width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.2);transition:transform .2s}
+.float-btn:hover{transform:scale(1.1)}
+.fb-phone{background:var(--red)}
+.fb-chat{background:#00b14f}
+.fb-mail{background:#1877f2}
+.float-btn svg{width:20px;height:20px;fill:#fff}
+.scroll-top-btn{position:fixed;right:20px;bottom:24px;width:38px;height:38px;background:var(--dark);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:999;box-shadow:0 4px 12px rgba(0,0,0,0.2);transition:background .2s}
+.scroll-top-btn:hover{background:var(--red)}
+.scroll-top-btn svg{width:16px;height:16px;fill:#fff}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-content>*{animation:fadeUp .6s ease both}
+.hero-content>*:nth-child(1){animation-delay:.1s}
+.hero-content>*:nth-child(2){animation-delay:.2s}
+.hero-content>*:nth-child(3){animation-delay:.3s}
+.hero-content>*:nth-child(4){animation-delay:.4s}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+<div class="topbar-inner">
+<div class="topbar-left">
+<div class="topbar-item">
+<svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+0973606695
+</div>
+<div class="topbar-item">
+<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+info@antechautomation.vn
+</div>
+<div class="topbar-item">
+<svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+8:00 – 17:00 &nbsp;|&nbsp; Thứ 2 – Thứ 7
+</div>
+</div>
+<div class="topbar-right">
+<div class="topbar-social"><svg viewBox="0 0 24 24"><path d="M12 2.04c-5.5 0-10 4.49-10 10.02 0 5 3.66 9.15 8.44 9.9v-7H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.53-4.5-10.02-10-10.02z"/></svg></div>
+<div class="topbar-social"><svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg></div>
+</div>
+</div>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+<div class="header-inner">
+<div class="logo">
+<div class="logo-icon">
+<svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+</div>
+<div class="logo-text">
+<div class="logo-name">ANTECH</div>
+<div class="logo-sub">Automation Equipment</div>
+</div>
+</div>
+<div class="header-search">
+<div class="search-wrap">
+<input type="text" placeholder="Tìm kiếm sản phẩm, thương hiệu...">
+<button class="search-btn">
+<svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+</button>
+</div>
+</div>
+<div class="header-right">
+<div class="header-hotline">
+<div class="hotline-ring">
+<svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+</div>
+<div class="hotline-info">
+<div class="hotline-label">Hotline 24/7</div>
+<div class="hotline-num">0973 606 695</div>
+</div>
+</div>
+<div class="cart-btn">
+<svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96C5 16.1 6.9 18 9 18h12v-2H9.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63H19c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1 1 0 0 0 23.45 5H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+<div class="cart-dot"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+<div class="nav-inner">
+<div class="nav-item highlight">
+<a href="#"><svg style="width:14px;height:14px;fill:var(--red-light);margin-right:4px" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>Danh Mục <span class="nav-caret">▾</span></a>
+<div class="dropdown">
+<div class="dd-head">Thương Hiệu</div>
+<a href="#">OMRON</a><a href="#">MITSUBISHI</a><a href="#">DELTA</a>
+<a href="#">PANASONIC</a><a href="#">YASKAWA</a><a href="#">SMC</a>
+<a href="#">INOVANCE</a><a href="#">AIRTAC</a><a href="#">ADVANTECH</a>
+</div>
+</div>
+<div class="nav-item"><a href="#" class="active">Trang chủ</a></div>
+<div class="nav-item"><a href="#">Giới thiệu</a></div>
+<div class="nav-item">
+<a href="#">Sản phẩm <span class="nav-caret">▾</span></a>
+<div class="dropdown">
+<a href="#">Biến tần</a><a href="#">PLC</a><a href="#">HMI / Màn hình</a>
+<a href="#">Servo Motor & Driver</a><a href="#">Cảm biến</a>
+<a href="#">Van điện từ</a><a href="#">Xy lanh</a><a href="#">Máy tính công nghiệp</a>
+</div>
+</div>
+<div class="nav-item"><a href="#">Tin tức</a></div>
+<div class="nav-item"><a href="#">Tuyển dụng</a></div>
+<div class="nav-item"><a href="#">Liên hệ</a></div>
+</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-wrap" id="heroWrap">
+<div class="hero-slide s1 active">
+<div class="slide-bg"><div class="slide-bg-shape sh1"></div><div class="slide-bg-shape sh2"></div></div>
+<div class="hero-content">
+<div class="hero-eyebrow"><div class="hero-eyebrow-dot"></div><span>Thiết bị tự động hóa hàng đầu</span></div>
+<div class="hero-title">PHÂN PHỐI<br><em>CHÍNH HÃNG</em><br>TỰ ĐỘNG HÓA</div>
+<div class="hero-desc">OMRON · MITSUBISHI · DELTA · PANASONIC · YASKAWA · SMC và hơn 50 thương hiệu hàng đầu thế giới.</div>
+<div class="hero-actions">
+<a href="#" class="btn-primary"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>Xem sản phẩm</a>
+<a href="#" class="btn-outline">Liên hệ ngay</a>
+</div>
+</div>
+<div class="hero-stats">
+<div class="stat-chip"><div class="stat-num">50+</div><div class="stat-label">Thương hiệu</div></div>
+<div class="stat-chip"><div class="stat-num">10K+</div><div class="stat-label">Sản phẩm</div></div>
+<div class="stat-chip"><div class="stat-num">365</div><div class="stat-label">Ngày bảo hành</div></div>
+</div>
+</div>
+<div class="hero-slide s2">
+<div class="slide-bg"><div class="slide-bg-shape sh1"></div></div>
+<div class="hero-content">
+<div class="hero-eyebrow"><div class="hero-eyebrow-dot"></div><span>Inovance – MD800 Series</span></div>
+<div class="hero-title">BIẾN TẦN<br><em>MD800</em><br>COMPACT DRIVE</div>
+<div class="hero-desc">Công nghệ tiên tiến, tiết kiệm năng lượng vượt trội. Phù hợp cho mọi ứng dụng công nghiệp hiện đại.</div>
+<div class="hero-actions">
+<a href="#" class="btn-primary"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>Tìm hiểu thêm</a>
+<a href="#" class="btn-outline">Báo giá ngay</a>
+</div>
+</div>
+<div class="hero-stats">
+<div class="stat-chip"><div class="stat-num">355kW</div><div class="stat-label">Công suất tối đa</div></div>
+<div class="stat-chip"><div class="stat-num">3P</div><div class="stat-label">380V nguồn vào</div></div>
+<div class="stat-chip"><div class="stat-num">IP55</div><div class="stat-label">Chống bụi nước</div></div>
+</div>
+</div>
+<div class="hero-slide s3">
+<div class="slide-bg"><div class="slide-bg-shape sh1"></div></div>
+<div class="hero-content">
+<div class="hero-eyebrow"><div class="hero-eyebrow-dot"></div><span>Khuyến mãi tháng này</span></div>
+<div class="hero-title">GIÁ SỐC<br><em>QUÀ NGON</em><br>MUA NGAY</div>
+<div class="hero-desc">Hàng trăm sản phẩm giảm giá đặc biệt. Giao hàng miễn phí toàn quốc cho đơn từ 500K.</div>
+<div class="hero-actions">
+<a href="#" class="btn-primary"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96C5 16.1 6.9 18 9 18h12v-2H9.42l.03-.12.9-1.63H19c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1 1 0 0 0 23.45 5H5.21l-.94-2H1z"/></svg>Mua ngay</a>
+<a href="#" class="btn-outline">Xem tất cả</a>
+</div>
+</div>
+<div class="hero-stats">
+<div class="stat-chip"><div class="stat-num">-30%</div><div class="stat-label">Giảm tối đa</div></div>
+<div class="stat-chip"><div class="stat-num">Free</div><div class="stat-label">Giao hàng toàn quốc</div></div>
+<div class="stat-chip"><div class="stat-num">24h</div><div class="stat-label">Giao nhanh HCM</div></div>
+</div>
+</div>
+<div class="hero-dots">
+<div class="hdot active" onclick="goSlide(0)"></div>
+<div class="hdot" onclick="goSlide(1)"></div>
+<div class="hdot" onclick="goSlide(2)"></div>
+</div>
+<div class="hero-nav">
+<button class="hnav" onclick="changeSlide(-1)">‹</button>
+<button class="hnav" onclick="changeSlide(1)">›</button>
+</div>
+</div>
+</div>
+
+<!-- BODY -->
+<div class="body-wrap">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+<div class="sidebar-card">
+<div class="sidebar-header">
+<svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+Danh Mục
+</div>
+<div class="sidebar-item"><div class="brand-tag">OMR</div>OMRON<span class="sidebar-arrow">›</span></div>
+<div class="sidebar-item"><div class="brand-tag">MITS</div>MITSUBISHI<span class="sidebar-arrow">›</span></div>
+<div class="sidebar-item"><div class="brand-tag">DLT</div>DELTA<span class="sidebar-arrow">›</span></div>
+<div class="sidebar-item"><div class="brand-tag">PAN</div>PANASONIC<span class="sidebar-arrow">›</span></div>
+<div class="sidebar-item"><div class="brand-tag">YAS</div>YASKAWA<span class="sidebar-arrow">›</span></div>
+<div class="sidebar-item"><div class="brand-tag">SMC</div>SMC<span class="sidebar-arrow">›</span></div>
+<div class="sidebar-item"><div class="brand-tag">INV</div>INOVANCE<span class="sidebar-arrow">›</span></div>
+<div class="sidebar-item"><div class="brand-tag">AIR</div>AIRTAC<span class="sidebar-arrow">›</span></div>
+<div class="sidebar-item"><div class="brand-tag">ADV</div>ADVANTECH<span class="sidebar-arrow">›</span></div>
+<div class="sidebar-item"><div class="brand-tag">SICK</div>SICK<span class="sidebar-arrow">›</span></div>
+<div class="sidebar-item"><div class="brand-tag">FST</div>FESTO<span class="sidebar-arrow">›</span></div>
+<div class="sidebar-item"><div class="brand-tag">SIE</div>SIEMENS<span class="sidebar-arrow">›</span></div>
+</div>
+</div>
+
+<!-- MAIN -->
+<div class="main-content">
+
+<!-- PROMO BANNER -->
+<div class="promo-banner" style="margin-top:0">
+<div class="promo-left">
+<div class="promo-eyebrow">Khuyến mãi đặc biệt</div>
+<div class="promo-title">Giá Sốc <span>Quà Ngon</span> – Sản Phẩm Nổi Bật</div>
+</div>
+<a href="#" class="promo-btn">
+Xem tất cả <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+</a>
+</div>
+
+<!-- PRODUCT GRID -->
+<div class="product-grid">
+<div class="product-card">
+<div class="product-badge">HOT</div>
+<div class="product-wishlist"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+<div class="product-img"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+<div class="product-body"><div class="product-brand">PANASONIC</div><div class="product-name">Động cơ Servo MHMF092L1V2M IP65</div><div class="product-footer"><div class="product-price contact">Liên hệ</div><button class="add-cart"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button></div></div>
+</div>
+<div class="product-card">
+<div class="product-wishlist"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+<div class="product-img"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+<div class="product-body"><div class="product-brand">YKHMI</div><div class="product-name">Màn hình 4 inch MM-20MR-4MTS-FE400-FX-A</div><div class="product-footer"><div class="product-price contact">Liên hệ</div><button class="add-cart"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button></div></div>
+</div>
+<div class="product-card">
+<div class="product-badge">MỚI</div>
+<div class="product-wishlist"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+<div class="product-img"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></div>
+<div class="product-body"><div class="product-brand">MITSUBISHI</div><div class="product-name">Module Data Logging FX3U-CF-ADP</div><div class="product-footer"><div class="product-price contact">Liên hệ</div><button class="add-cart"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button></div></div>
+</div>
+<div class="product-card">
+<div class="product-wishlist"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+<div class="product-img"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></div>
+<div class="product-body"><div class="product-brand">SMC</div><div class="product-name">Giác hút chân không ZPT04UGNJ6</div><div class="product-footer"><div class="product-price contact">Liên hệ</div><button class="add-cart"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button></div></div>
+</div>
+<div class="product-card">
+<div class="product-wishlist"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+<div class="product-img"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div>
+<div class="product-body"><div class="product-brand">DELTA</div><div class="product-name">Cảm biến áp suất PA-850-103G-NR2</div><div class="product-footer"><div class="product-price contact">Liên hệ</div><button class="add-cart"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button></div></div>
+</div>
+<div class="product-card">
+<div class="product-badge">-15%</div>
+<div class="product-wishlist"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+<div class="product-img"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h2M6 14h2M10 10h8M10 14h8"/></svg></div>
+<div class="product-body"><div class="product-brand">ADVANTECH</div><div class="product-name">Máy tính mini Intel Celeron 1037U DDR3L</div><div class="product-footer"><div class="product-price">2.145.754₫</div><button class="add-cart"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button></div></div>
+</div>
+<div class="product-card">
+<div class="product-wishlist"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+<div class="product-img"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+<div class="product-body"><div class="product-brand">INOVANCE</div><div class="product-name">Servo driver IS300T050-c</div><div class="product-footer"><div class="product-price contact">Liên hệ</div><button class="add-cart"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button></div></div>
+</div>
+<div class="product-card">
+<div class="product-wishlist"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+<div class="product-img"><svg viewBox="0 0 24 24"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg></div>
+<div class="product-body"><div class="product-brand">MODBUS</div><div class="product-name">Module RTU/TCP Ethernet giao thức 485</div><div class="product-footer"><div class="product-price">2.744.560₫</div><button class="add-cart"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button></div></div>
+</div>
+</div>
+
+<!-- TABS BY BRAND -->
+<div class="tab-wrap">
+<div class="sec-head" style="margin-bottom:0">
+<div class="sec-title">Sản Phẩm Theo Hãng</div>
+<a href="#" class="sec-link">Xem tất cả <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></a>
+</div>
+<div class="tab-header">
+<div class="tab-nav">
+<button class="tab-btn active">PANASONIC</button>
+<button class="tab-btn">MITSUBISHI</button>
+<button class="tab-btn">YASKAWA</button>
+<button class="tab-btn">OMRON</button>
+<button class="tab-btn">DELTA</button>
+</div>
+</div>
+<div class="tab-content">
+<div class="product-grid" style="grid-template-columns:repeat(4,1fr)">
+<div class="product-card"><div class="product-img"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg></div><div class="product-body"><div class="product-brand">MITSUBISHI</div><div class="product-name">Mô đun R16CPU</div><div class="product-footer"><div class="product-price contact">Liên hệ</div><button class="add-cart"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button></div></div></div>
+<div class="product-card"><div class="product-img"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3"/></svg></div><div class="product-body"><div class="product-brand">SICK</div><div class="product-name">Cảm biến quang điện WTB4S-3P2161</div><div class="product-footer"><div class="product-price contact">Liên hệ</div><button class="add-cart"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button></div></div></div>
+<div class="product-card"><div class="product-img"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2z"/></svg></div><div class="product-body"><div class="product-brand">LS ELECTRIC</div><div class="product-name">CB chống giật EBS52Fb 40A 2P</div><div class="product-footer"><div class="product-price contact">Liên hệ</div><button class="add-cart"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button></div></div></div>
+<div class="product-card"><div class="product-img"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6M9 11h6"/></svg></div><div class="product-body"><div class="product-brand">PLC SIEMENS</div><div class="product-name">Module CPU SIEMENS 6ES7315</div><div class="product-footer"><div class="product-price contact">Liên hệ</div><button class="add-cart"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button></div></div></div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- TRUST -->
+<div class="full" style="max-width:1280px;margin:0 auto;padding:0 24px">
+<div class="trust-section">
+<div class="trust-item">
+<div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.65 1.35 3 3 3s3-1.35 3-3h6c0 1.65 1.35 3 3 3s3-1.35 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></div>
+<div class="trust-title">Miễn phí giao hàng</div>
+<div class="trust-sub">Giao hàng toàn quốc,<br>nhanh chóng & an toàn</div>
+</div>
+<div class="trust-item">
+<div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg></div>
+<div class="trust-title">Giao dịch an toàn</div>
+<div class="trust-sub">Thanh toán bảo mật,<br>đa phương thức</div>
+</div>
+<div class="trust-item">
+<div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+<div class="trust-title">Hàng chính hãng 100%</div>
+<div class="trust-sub">Cam kết chính hãng,<br>có CO/CQ đầy đủ</div>
+</div>
+<div class="trust-item">
+<div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div>
+<div class="trust-title">Bảo hành +365 ngày</div>
+<div class="trust-sub">Hỗ trợ kỹ thuật 24/7,<br>bảo hành chính sách tốt</div>
+</div>
+</div>
+</div>
+
+<!-- BRANDS -->
+<div style="max-width:1280px;margin:0 auto;padding:0 24px">
+<div class="sec-head">
+<div class="sec-title">Thương Hiệu Đối Tác</div>
+<a href="#" class="sec-link">Xem tất cả <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></a>
+</div>
+<div class="brands-grid">
+<div class="brand-card"><div class="brand-name">OMRON</div><div class="brand-sub">Japan</div></div>
+<div class="brand-card"><div class="brand-name">MITSUBISHI</div><div class="brand-sub">Japan</div></div>
+<div class="brand-card"><div class="brand-name">DELTA</div><div class="brand-sub">Taiwan</div></div>
+<div class="brand-card"><div class="brand-name">PANASONIC</div><div class="brand-sub">Japan</div></div>
+<div class="brand-card"><div class="brand-name">YASKAWA</div><div class="brand-sub">Japan</div></div>
+<div class="brand-card"><div class="brand-name">SMC</div><div class="brand-sub">Japan</div></div>
+<div class="brand-card"><div class="brand-name">INOVANCE</div><div class="brand-sub">China</div></div>
+<div class="brand-card"><div class="brand-name">AIRTAC</div><div class="brand-sub">Taiwan</div></div>
+<div class="brand-card"><div class="brand-name">ADVANTECH</div><div class="brand-sub">Taiwan</div></div>
+<div class="brand-card"><div class="brand-name">SICK</div><div class="brand-sub">Germany</div></div>
+<div class="brand-card"><div class="brand-name">SIEMENS</div><div class="brand-sub">Germany</div></div>
+<div class="brand-card"><div class="brand-name">FESTO</div><div class="brand-sub">Germany</div></div>
+<div class="brand-card"><div class="brand-name">SCHNEIDER</div><div class="brand-sub">France</div></div>
+<div class="brand-card"><div class="brand-name">LS ELECTRIC</div><div class="brand-sub">Korea</div></div>
+<div class="brand-card"><div class="brand-name">HIWIN</div><div class="brand-sub">Taiwan</div></div>
+</div>
+</div>
+
+<!-- NEWS -->
+<div style="max-width:1280px;margin:0 auto;padding:0 24px">
+<div class="sec-head">
+<div class="sec-title">Tin Tức & Công Nghệ</div>
+<a href="#" class="sec-link">Tất cả tin tức <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></a>
+</div>
+<div class="news-grid">
+<div class="news-card">
+<div class="news-side"><div class="news-day">03</div><div class="news-mon">Th4 2026</div></div>
+<div class="news-body"><div class="news-cat">Sản phẩm mới</div><div class="news-title">PC Mini Advantech Chính Hãng – Giá Tốt 2026 | Máy Tính Công Nghiệp Nhỏ Gọn, Bền Bỉ</div><div class="news-date">03/04/2026</div></div>
+</div>
+<div class="news-card">
+<div class="news-side"><div class="news-day">10</div><div class="news-mon">Th3 2026</div></div>
+<div class="news-body"><div class="news-cat">Giải pháp</div><div class="news-title">Con lăn điện – Giải pháp tự động hóa băng chuyền hiện đại trong nhà máy sản xuất</div><div class="news-date">10/03/2026</div></div>
+</div>
+<div class="news-card">
+<div class="news-side"><div class="news-day">18</div><div class="news-mon">Th8 2025</div></div>
+<div class="news-body"><div class="news-cat">Thương hiệu</div><div class="news-title">ADTECH sản phẩm tự động hóa – Hệ sinh thái toàn diện cho nhà máy thông minh</div><div class="news-date">18/08/2025</div></div>
+</div>
+<div class="news-card">
+<div class="news-side"><div class="news-day">11</div><div class="news-mon">Th8 2025</div></div>
+<div class="news-body"><div class="news-cat">Công nghệ</div><div class="news-title">Bộ điều khiển Servo Mitsubishi MR-J5-70G-RJN1 – Đột phá tốc độ & độ chính xác vượt trội</div><div class="news-date">11/08/2025</div></div>
+</div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+<div class="footer-top">
+<div>
+<div class="footer-brand-name">AN<span>TECH</span> AUTOMATION</div>
+<div class="footer-desc">Công ty TNHH Thiết Bị Tự Động Hóa ANTECH – chuyên cung cấp thiết bị tự động hóa công nghiệp chính hãng. Đối tác tin cậy của hàng nghìn nhà máy tại Việt Nam.</div>
+<div class="footer-contacts">
+<div class="fc"><div class="fc-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div><span><strong>0973 606 695</strong> – Hotline 24/7</span></div>
+<div class="fc"><div class="fc-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div><span>info@antechautomation.vn</span></div>
+<div class="fc"><div class="fc-icon"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg></div><span>8:00 – 17:00 | Thứ 2 – Thứ 7</span></div>
+</div>
+</div>
+<div>
+<div class="footer-heading">Sản Phẩm</div>
+<ul class="footer-links">
+<li><a href="#">Biến tần</a></li>
+<li><a href="#">PLC</a></li>
+<li><a href="#">HMI / Màn hình</a></li>
+<li><a href="#">Servo Motor</a></li>
+<li><a href="#">Cảm biến</a></li>
+<li><a href="#">Van điện từ</a></li>
+</ul>
+</div>
+<div>
+<div class="footer-heading">Thương Hiệu</div>
+<ul class="footer-links">
+<li><a href="#">OMRON</a></li>
+<li><a href="#">MITSUBISHI</a></li>
+<li><a href="#">DELTA</a></li>
+<li><a href="#">PANASONIC</a></li>
+<li><a href="#">YASKAWA</a></li>
+<li><a href="#">INOVANCE</a></li>
+</ul>
+</div>
+<div>
+<div class="footer-heading">Nhận Tin Mới</div>
+<div class="footer-desc" style="font-size:12px;margin-bottom:10px">Đăng ký nhận thông tin sản phẩm mới và khuyến mãi hấp dẫn.</div>
+<div class="footer-newsletter">
+<div class="newsletter-label">Email của bạn</div>
+<div class="newsletter-wrap">
+<input type="email" placeholder="example@email.com">
+<button class="newsletter-btn">Đăng ký</button>
+</div>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<div class="footer-bottom-inner">
+<div class="footer-copy">© 2026 ANTECH AUTOMATION. All rights reserved.</div>
+<div class="footer-badges">
+<div class="fbadge">SSL</div>
+<div class="fbadge">VERIFIED</div>
+<div class="fbadge">GENUINE</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- FLOATING -->
+<div class="float-actions">
+<button class="float-btn fb-phone"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></button>
+<button class="float-btn fb-chat"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg></button>
+<button class="float-btn fb-mail"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></button>
+</div>
+<button class="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg></button>
+
+<script>
+let cur=0;
+const slides=document.querySelectorAll('.hero-slide');
+const dots=document.querySelectorAll('.hdot');
+function goSlide(n){
+  slides[cur].classList.remove('active');
+  dots[cur].classList.remove('active');
+  cur=(n+slides.length)%slides.length;
+  slides[cur].classList.add('active');
+  dots[cur].classList.add('active');
+}
+function changeSlide(d){goSlide(cur+d)}
+setInterval(()=>changeSlide(1),5000);
+
+document.querySelectorAll('.tab-btn').forEach(b=>{
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
