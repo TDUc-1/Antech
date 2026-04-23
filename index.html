@@ -382,7 +382,7 @@ info@antechautomation.vn
 <div class="slide-bg"><div class="slide-bg-shape sh1"></div></div>
 <div class="hero-content">
 <div class="hero-eyebrow"><div class="hero-eyebrow-dot"></div><span>Inovance – MD800 Series</span></div>
-<div class="hero-title">BIẾN TẦN<br><em>MD80000</em><br>COMPACT DRIVE</div>
+<div class="hero-title">BIẾN TẦN<br><em>MD800</em><br>COMPACT DRIVE</div>
 <div class="hero-desc">Công nghệ tiên tiến, tiết kiệm năng lượng vượt trội. Phù hợp cho mọi ứng dụng công nghiệp hiện đại.</div>
 <div class="hero-actions">
 <a href="#" class="btn-primary"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>Tìm hiểu thêm</a>
@@ -687,7 +687,7 @@ let cur=0;
 const slides=document.querySelectorAll('.hero-slide');
 const dots=document.querySelectorAll('.hdot');
 function goSlide(n){
-  slides[cur].classList.remove('active');
+  slides[cur].classList.remove('active'); 
   dots[cur].classList.remove('active');
   cur=(n+slides.length)%slides.length;
   slides[cur].classList.add('active');
